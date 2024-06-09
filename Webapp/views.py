@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from Backend.models import productdb, categorydb
-from Webapp.models import contactdb, logindb, cartdb
+from Webapp.models import contactdb, logindb, cartdb,shipingdb
 from django.contrib import messages
 
 
@@ -116,15 +116,47 @@ def cartpage(request):
 def disp_cart(request):
     data = cartdb.objects.filter(User=request.session['Uname'])
     total_price = 0
+    shipping_price = 0
+    full_total = 0
     for i in data:
         total_price = total_price + i.Prices
-    sprice = 0
-    if total_price < 250:
-        sprice = sprice+45
-    else:
-        sprice = sprice
-    return render(request, "cartpage.html", {'data': data, 'total_price': total_price})
+        if total_price < 250:
+            shipping_price = 45
+        else:
+            shipping_price = 10
+        full_total = shipping_price + total_price
+
+    return render(request, "cartpage.html", {'data': data, 'total_price': total_price, 'shipping_price': shipping_price, 'full_total': full_total})
 
 
 def logins(request):
     return render(request, "logins.html")
+
+
+def check_out(request):
+    data = cartdb.objects.filter(User=request.session['Uname'])
+    total_price = 0
+    shipping_price = 0
+    full_total = 0
+    for i in data:
+        total_price = total_price + i.Prices
+        if total_price < 250:
+            shipping_price = 45
+        else:
+            shipping_price = 10
+        full_total = shipping_price + total_price
+    return render(request, "checkout.html",{'data':data, 'total_price': total_price, 'shipping_price': shipping_price, 'full_total': full_total})
+
+
+def ship_check(request):
+    if request.method == "POST":
+        a = request.POST.get('use')
+        b = request.POST.get('email')
+        c = request.POST.get('address')
+        d = request.POST.get('phone')
+        e = request.POST.get('message')
+        obj1 = shipingdb(User=a, Email=b,Address=c,Phone=d,Message=e)
+        obj1.save()
+        return redirect(payments)
+def payments(request):
+    return render(request,"payment.html")

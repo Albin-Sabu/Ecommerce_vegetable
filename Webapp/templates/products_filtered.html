@@ -82,7 +82,7 @@
 								</li>
 								<li>
 									<div class="header-icons">
-										<a class="shopping-cart" href="#"><i class="fas fa-shopping-cart"></i></a>
+										<a class="shopping-cart" href="{% url 'disp_cart' %}"><i class="fas fa-shopping-cart"></i></a>
 										<a class="mobile-hide search-bar-icon" href="#"><i class="fas fa-search"></i></a>
 									</div>
 								</li>
@@ -221,16 +221,16 @@
 				<div class="col-lg-3 col-md-6">
 					<div class="footer-box about-widget">
 						<h2 class="widget-title">About us</h2>
-						<p>Ut enim ad minim veniam perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae.</p>
+						<p>We play a role in making it easier for people to get the needs of quality vegetables at competitive prices.</p>
 					</div>
 				</div>
 				<div class="col-lg-3 col-md-6">
 					<div class="footer-box get-in-touch">
 						<h2 class="widget-title">Get in Touch</h2>
 						<ul>
-							<li>34/8, East Hukupara, Gifirtok, Sadan.</li>
-							<li>support@fruitkha.com</li>
-							<li>+00 111 222 3333</li>
+							<li>Palachuvadu Piravom.</li>
+							<li>support@eveggie.com</li>
+							<li>+91 9876543210</li>
 						</ul>
 					</div>
 				</div>
@@ -238,11 +238,10 @@
 					<div class="footer-box pages">
 						<h2 class="widget-title">Pages</h2>
 						<ul>
-							<li><a href="index.html">Home</a></li>
-							<li><a href="about.html">About</a></li>
-							<li><a href="services.html">Shop</a></li>
-							<li><a href="news.html">News</a></li>
-							<li><a href="contact.html">Contact</a></li>
+							<li><a href="{% url 'home' %}">Home</a></li>
+							<li><a href="{% url 'about_page' %}">About</a></li>
+							<li><a href="{% url 'product_page' %}">Shop</a></li>
+							<li><a href="{% url 'contact_page' %}">Contact</a></li>
 						</ul>
 					</div>
 				</div>
@@ -250,7 +249,7 @@
 					<div class="footer-box subscribe">
 						<h2 class="widget-title">Subscribe</h2>
 						<p>Subscribe to our mailing list to get the latest updates.</p>
-						<form action="index.html">
+						<form action="#">
 							<input type="email" placeholder="Email">
 							<button type="submit"><i class="fas fa-paper-plane"></i></button>
 						</form>
@@ -266,8 +265,7 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-6 col-md-12">
-					<p>Copyrights &copy; 2019 - <a href="https://imransdesign.com/">Imran Hossain</a>,  All Rights Reserved.<br>
-						Distributed By - <a href="https://themewagon.com/">Themewagon</a>
+					<p>Copyrights &copy; 2019 - <a href="#">Albin Sabu</a>,  All Rights Reserved.<br>
 					</p>
 				</div>
 				<div class="col-lg-6 text-right col-md-12">
