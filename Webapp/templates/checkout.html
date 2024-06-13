@@ -156,7 +156,8 @@
 						        		<p><input type="text" name="use" value="{{request.session.Uname}}" readonly></p>
 						        		<p><input type="email"  name="email" placeholder="Email Id" required></p>
 						        		<p><input type="text" placeholder="Address" name="address" required></p>
-						        		<p><input type="number" placeholder="Phone" name="phone" required></p>
+						        		<p><input type="tel" placeholder="Phone" name="phone" required></p>
+										<p><input type="hidden" placeholder="Price" name="price" value="{{full_total}}"></p>
 						        		<p><textarea name="message" id="bill" cols="30" rows="10" placeholder="Say Something"></textarea></p>
 										<button type="submit" style="background-color:orange;border:none; border-radius:20px;height:40px">Place Order</button>
 						        	</form>

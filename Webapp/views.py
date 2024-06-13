@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from Backend.models import productdb, categorydb
 from Webapp.models import contactdb, logindb, cartdb,shipingdb
 from django.contrib import messages
-
+import razorpay
 
 # Create your views here.
 def home_page(request):
@@ -155,8 +155,23 @@ def ship_check(request):
         c = request.POST.get('address')
         d = request.POST.get('phone')
         e = request.POST.get('message')
-        obj1 = shipingdb(User=a, Email=b,Address=c,Phone=d,Message=e)
+        f = request.POST.get('price')
+        obj1 = shipingdb(User=a, Email=b,Address=c,Phone=d,Message=e, Price=f)
         obj1.save()
         return redirect(payments)
+
 def payments(request):
-    return render(request,"payment.html")
+    customer = shipingdb.objects.order_by('-id').first()
+
+    payy = customer.Price
+    amount = int(payy * 100)
+    payy_str = str(amount)
+    for i in payy_str:
+        print(i)
+
+    if request.method == "POST":
+        order_currency = 'INR'
+        client = razorpay.Client(auth=('rzp_test_8vf1uexV34L0Az', '0RRO2Pp7h7rXZWYFiejpboDW'))
+        payment = client.order.create({'amount': amount, 'currency': order_currency, 'payment_capture': '1'})
+
+    return render(request, "payment.html", {'customer': customer, 'payy_str': payy_str})

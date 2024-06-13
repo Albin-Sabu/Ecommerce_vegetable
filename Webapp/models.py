@@ -29,4 +29,5 @@ class shipingdb(models.Model):
     Email = models.CharField(max_length=50, blank=True, null=True)
     Address = models.CharField(max_length=100, null=True,blank=True)
     Phone = models.IntegerField(blank=True, null=True)
+    Price = models.IntegerField(blank=True, null=True)
     Message = models.CharField(max_length=50, blank=True, null=True)
