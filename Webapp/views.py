@@ -171,7 +171,7 @@ def payments(request):
 
     if request.method == "POST":
         order_currency = 'INR'
-        client = razorpay.Client(auth=('rzp_test_8vf1uexV34L0Az', '0RRO2Pp7h7rXZWYFiejpboDW'))
+        client = razorpay.Client(auth=('', '')
         payment = client.order.create({'amount': amount, 'currency': order_currency, 'payment_capture': '1'})
 
     return render(request, "payment.html", {'customer': customer, 'payy_str': payy_str})
